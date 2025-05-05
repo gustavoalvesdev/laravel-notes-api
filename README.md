@@ -28,9 +28,18 @@ cp .env.testing.example .env.testing
 
 # Configure seu banco no .env, e seu banco de testes no .env.testiong, então execute
 php artisan key:generate
-php aritsan key:generate --env=testing
+php artisan key:generate --env=testing
 
 php artisan migrate
+
+# Para o ambiente de testes
+php artisan migrate --env=testing
+
+# Rodar os seeders para testar a API
+php artisan db:seed
+
+# Para o ambiente de testes
+php artisan db:seed --env=testing
 ```
 
 ## Testes
@@ -40,7 +49,7 @@ Este projeto possui testes de API com PHPUnit e Laravel Test Case
 Execute os testes com:
 
 ```bash
-php artisan test
+php artisan test --env=testing
 ```
 
 ## 📂 Estrutura da API
