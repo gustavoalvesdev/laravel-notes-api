@@ -42,7 +42,23 @@ php artisan db:seed
 php artisan db:seed --env=testing
 ```
 
-## Testes
+## 🔍 Documentação Swagger
+
+Este projeto utiliza o [L5 Swagger](https://github.com/DarkaOnline/L5-Swagger) para documentação da API.
+
+Para gerar a documentação, execute:
+
+```bash
+php artisan l5-swagger-generate
+```
+
+Depois, acesse em:
+
+```
+http://localhost:8000/api/documentation
+```
+
+## 🧪 Testes
 
 Este projeto possui testes de API com PHPUnit e Laravel Test Case
 

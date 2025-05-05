@@ -1,0 +1,127 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Notes API",
+        "description": "API para gerenciamento de notas",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/notes": {
+            "get": {
+                "summary": "Lista todas as notas",
+                "operationId": "7bc2aa6a1ac0864fec555234b4d63777",
+                "responses": {
+                    "200": {
+                        "description": "Lista todas as notas"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cria uma nova nota",
+                "operationId": "88f210de83eb1299dd2c04ef64e4f168",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Note"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cria uma nova nota"
+                    }
+                }
+            }
+        },
+        "/api/notes/{id}": {
+            "get": {
+                "summary": "Lista uma nota específica",
+                "operationId": "9df678722268619c15888106db4566e8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da nota",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista uma nota específica"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Edita uma nota",
+                "operationId": "ad9f2793a5be3c8a5e8da917c67ffcda",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da nota",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Note"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Edita uma nota"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta uma nota",
+                "operationId": "231822d83675b5b9446d8b0f6f4d3959",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da nota",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deleta uma nota"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Note": {
+                "title": "Note",
+                "required": [
+                    "title",
+                    "body"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Título da nota"
+                    },
+                    "body": {
+                        "type": "string",
+                        "example": "Corpo da nota"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

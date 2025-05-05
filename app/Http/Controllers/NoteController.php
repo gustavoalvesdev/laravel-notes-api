@@ -9,6 +9,13 @@ class NoteController extends Controller
 {
     private $array;
 
+    /**
+     * @OA\Get( 
+     *     path="/api/notes",
+     *     summary="Lista todas as notas",
+     *     @OA\Response(response=200, description="Lista todas as notas")
+     * )
+     */
     public function all()
     {
         $notes = Note::all();
@@ -23,6 +30,14 @@ class NoteController extends Controller
         return $this->array;
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/notes/{id}",
+     *     summary="Lista uma nota específica",
+     *     @OA\Parameter(name="id", in="path", required=true, description="ID da nota"),
+     *     @OA\Response(response=200, description="Lista uma nota específica")
+     * )
+     */
     public function one($id)
     {
         $note = Note::find($id);
@@ -36,6 +51,16 @@ class NoteController extends Controller
         return $this->array;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/notes",
+     *     summary="Cria uma nova nota",
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(ref="#/components/schemas/Note")
+     *     ),
+     *     @OA\Response(response=200, description="Cria uma nova nota")
+     * )
+     */
     public function new(Request $request)
     {
         $title = $request->input('title');
@@ -59,6 +84,17 @@ class NoteController extends Controller
         return $this->array;
     }
 
+    /**
+     * @OA\Put(
+     *     path="/api/notes/{id}",
+     *     summary="Edita uma nota",
+     *     @OA\Parameter(name="id", in="path", required=true, description="ID da nota"),
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(ref="#/components/schemas/Note")
+     *     ),
+     *     @OA\Response(response=200, description="Edita uma nota")
+     * )
+     */
     public function edit(Request $request, $id)
     {
         $title = $request->input('title');
@@ -91,6 +127,14 @@ class NoteController extends Controller
         return $this->array;
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/api/notes/{id}",
+     *     summary="Deleta uma nota",       
+     *     @OA\Parameter(name="id", in="path", required=true, description="ID da nota"),
+     *     @OA\Response(response=200, description="Deleta uma nota")
+     * )
+     */
     public function delete($id) 
     {
 
