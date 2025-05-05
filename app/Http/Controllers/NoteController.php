@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    private $array = ['error' => '', 'result' => []];
+    private $array;
 
     public function all()
     {
         $notes = Note::all();
         
         foreach($notes as $note) {
-            $this->array['result'][] = [
+            $this->array[] = [
                 'id' => $note->id,
                 'title' => $note->title
             ];
@@ -28,7 +28,7 @@ class NoteController extends Controller
         $note = Note::find($id);
 
         if ($note) {
-            $this->array['result'] = $note;
+            $this->array = $note;
         } else {
             $this->array['error'] = 'ID não encontrado';
         }
@@ -49,11 +49,7 @@ class NoteController extends Controller
 
             $note->save();
 
-            $this->array['result'] = [
-                'id' => $note->id,
-                'title' => $note->title,
-                'body' => $note->body
-            ];
+            $this->array = $note;
 
 
         } else {
@@ -78,7 +74,7 @@ class NoteController extends Controller
                 $note->body = $body;
                 $note->save();
 
-                $this->array['result'] = [
+                $this->array = [
                     'id' => $id, 
                     'title' => $title,
                     'body' => $body
